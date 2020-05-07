@@ -1,5 +1,5 @@
 from Stack import Stack
-import recursiveStack
+import recursiveInfixToPosfix
 import predicates as P
 
 
@@ -11,9 +11,9 @@ def infixToPosfix(statement):
     precedenceRule = {'+':1,'-':1,'*':2,'/':2,'^':3,'(':4,'{':4,'[':4}
     for char in statement:
         if P.isOperator(char):
-            recursiveStack.f(stack,char,output)
+            recursiveInfixToPosfix.f(stack, char, output)
         if P.isClosure(char):
-            recursiveStack.f(stack, char, output)
+            recursiveInfixToPosfix.f(stack, char, output)
         if not P.isOperator(char) and not P.isClosure(char):
             output.append(char)
     for i in range(len(stack)):
