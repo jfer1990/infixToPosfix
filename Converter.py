@@ -1,29 +1,42 @@
 from Stack import Stack
 import recursiveInfixToPosfix
 import predicates as P
+from evaluatePosfix import evaluatePosfix
 
 
 
 
-def infixToPosfix(statement):
+def infixToPosfix(exp):
     stack = Stack()
     output = []
-    precedenceRule = {'+':1,'-':1,'*':2,'/':2,'^':3,'(':4,'{':4,'[':4}
-    for char in statement:
+    while len(exp)>0:
+        char = exp[0]
         if P.isOperator(char):
             recursiveInfixToPosfix.f(stack, char, output)
+            exp = exp[1:]
         if P.isClosure(char):
             recursiveInfixToPosfix.f(stack, char, output)
-        if not P.isOperator(char) and not P.isClosure(char):
-            output.append(char)
+            exp = exp[1:]
+        if P.isOperand(char):
+            var =""
+            while P.isOperand(exp[0]) :
+                var = var + exp[0]
+                exp = exp[1:]
+                if len(exp) <= 0: # si no se pone un break, el while de la linea 21 va a fallar evaluando.
+                    break
+            output.append(var)
+
+
     for i in range(len(stack)):
-        output.append(stack.pop())
+        if stack.peek()!='(' and stack.peek()!='{' and stack.peek()!='[':
+            output.append(stack.pop())
 
     return output
 
-expression = "3x*2/(3-5)*4"
+expression = "12+7"
 posfix = infixToPosfix(expression)
-print (posfix)
+print(posfix)
+print(evaluatePosfix(posfix))
 
 
 
