@@ -1,4 +1,5 @@
-import predicates as P
+from model import predicates as P
+
 
 def f(stack, operator, output):
     precedenceRule = {'>':1,'<':1,'=':2,'+': 3, '-': 3,'%':4,'*': 4, '/': 4, '^': 5, '(': 6, '{': 6, '[': 6}

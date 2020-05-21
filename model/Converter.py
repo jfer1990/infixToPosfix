@@ -1,7 +1,6 @@
-from Stack import Stack
-import recursiveInfixToPosfix
-import predicates as P
-from evaluatePosfix import evaluatePosfix
+from model.Stack import Stack
+from model import predicates  as P, recursiveInfixToPosfix
+from model.evaluatePosfix import evaluatePosfix
 
 
 
@@ -34,10 +33,8 @@ def infixToPosfix(exp):
 
     return output
 
-expression = "12 + 7* 3 -( 4 / 2 )  < 32"
-posfix = infixToPosfix(expression)
-print(posfix)
-print(evaluatePosfix(posfix))
+def isInfixValid(exp):
+    pass #falta implementacion
 
 
 

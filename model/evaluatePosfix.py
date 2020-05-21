@@ -1,5 +1,5 @@
-from predicates import isOperand, isOperator
-from Stack import Stack
+from model.predicates import isOperand, isOperator
+from model.Stack import Stack
 def getLiteral(exp):
     if len(exp)>0 and isOperand(exp[0]):
         return str(exp[0])+getLiteral(exp[1:])
