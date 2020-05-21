@@ -7,6 +7,7 @@ from evaluatePosfix import evaluatePosfix
 
 
 def infixToPosfix(exp):
+    exp = exp.replace(" ", "")
     stack = Stack()
     output = []
     while len(exp)>0:
@@ -33,7 +34,7 @@ def infixToPosfix(exp):
 
     return output
 
-expression = "12+7"
+expression = "12 + 7* 3 -( 4 / 2 )  < 32"
 posfix = infixToPosfix(expression)
 print(posfix)
 print(evaluatePosfix(posfix))
