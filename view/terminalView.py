@@ -8,7 +8,7 @@ class mainWindow:
     def run(self,controller):
         print("Hi, we are working on "+self._system+" system")
         while self._continue:
-            self._currentSel = input(">>").replace(" ","")
+            self._currentSel = input(">>").replace(" ","") #se quitan los espacios del input
             if self._currentSel == "quit()":
                 self._continue = False
             if not self._continue:

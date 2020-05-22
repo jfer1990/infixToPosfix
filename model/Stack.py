@@ -26,5 +26,3 @@ class Stack:
         return self.data.__str__()
 
 
-stack = Stack()
-print(stack.__len__())

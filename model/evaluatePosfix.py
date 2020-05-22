@@ -6,7 +6,7 @@ def getLiteral(exp):
     return ""
 
 
-
+#precondicion: debe recibir una exp válida infija sin espacios
 def evaluatePosfix(exp):
     stack = Stack()
     op = {'+': lambda x, y: x + y,
