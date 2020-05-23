@@ -20,10 +20,17 @@ class controller:
             lista = self.substituteX(lista)
             val = self.evalInfixToPosfix(lista[1])
             self.asignar(lista[0],val)
-            print("<< "+lista[0]+"  <-  "+str(self.dic.get(lista[0]))+" >>")
+            print(lista[0]+"  <-  "+str(self.dic.get(lista[0])))
+        elif exp.split()[0] == "clear()":
+            exp = exp.split()
+            self.eliminaX(exp)
+            print("Se eliminó" + str(exp[1]))
+        elif exp.casefold() == "clear(all)".casefold():
+            self.clearAll()
+            print("All variables have been deleted")
         else:
             lista = self.substituteX(["auxiliar",exp])
-            print("<<"+str(self.evalInfixToPosfix(lista[1]))+">>")
+            print("sol= "+str(self.evalInfixToPosfix(lista[1])))
 
 
 
@@ -70,6 +77,17 @@ class controller:
         self.dic[var]=exp
     def evalInfixToPosfix(self,exp):
         return evaluatePosfix(infixToPosfix(exp))
+    #Precondicion: recibe una lista con 2 elementos, el primero es la instruccion clear, el segundo la variable a eliminar
+    def eliminaX(self,exp):
+        var = exp[1]
+
+        if self.isAlpha(var):
+            if self.dic.get(var)!=None:
+                return self.dic.pop(var)
+    def clearAll(self):
+        self.dic.clear()
+
+
 
 vista = mainWindow()
 mvc = controller(vista)

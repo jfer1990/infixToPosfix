@@ -1,4 +1,5 @@
 import platform
+from model.Stack import Stack
 class mainWindow:
     def __init__(self):
         self._currentSel = None
@@ -18,6 +19,8 @@ class mainWindow:
             if self._currentSel.casefold() == "h".casefold() or self._currentSel.casefold() == "help".casefold():
                 self._help()
                 continue
+            if self.isClrX():
+                self.ClrX()
             controller.control(self.getVal())
 
 
@@ -28,7 +31,10 @@ class mainWindow:
     #Métodos privados-----------
 
     def _help(self):
-        print("Welcome to infix to posfix program V1.0 \nin order to leave the program "
+        print("Welcome to infix to posfix program V1.0 \n"
+              +"For deleting a variable write \"clear(variable_desired_to_delete)\" \n"
+              +"For deleting all variables write \"clear(all)\""
+              +"\nIn order to leave the program "
               +"write \"quit()\" (of course without quoatations.)")
     def _quit(self):
         resp = input("Sure you want to leave? Y/N:  ")
@@ -41,4 +47,13 @@ class mainWindow:
             return self.quit()
     def _sendVal(self,vista,controller):
         controller.iniciar(vista)
+    def ClrX(self):
+        #clear(x)
+         self._currentSel = "clear() "+str(self._currentSel[-2])
+    def isClrX(self):
+        #clear(x)
+        if len(self._currentSel)==8:
+            if self._currentSel[:6]=="clear(" and self._currentSel[7] == ")":
+                return True
+        return False
 
